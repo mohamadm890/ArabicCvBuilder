@@ -1,0 +1,17 @@
+
+@import "tailwindcss";
+
+body {
+    font-family: 'Cairo', sans-serif;
+   
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+.RSPBprogressBar {
+    height: 4px;
+}
