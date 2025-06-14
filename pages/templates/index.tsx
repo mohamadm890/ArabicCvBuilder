@@ -47,7 +47,7 @@ export default function TemplatesPage() {
             </p>
           </div>
 
-          <div className="flex flex-row flex-wrap gap-4 px-20 justify-center" style={{marginTop:"24px"}}>
+          <div className="flex flex-row flex-wrap gap-4 px-20 justify-center" style={{marginTop:"24px", padding:"60px"}}>
             {templates?.map((item) => (
               <Card
                 name={item.src}
