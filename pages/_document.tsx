@@ -8,6 +8,7 @@ export default function Document() {
           name="description"
           content="أنشئ نموذج سيرة ذاتية جاهز للتعبئة بصيغة PDF   مجانًا. أدوات سهلة، قوالب احترافية، وخيارات تصميم متعددة لإنشاء سيرة ذاتية مثالية للتوظيف."
         />
+        <meta name="google-site-verification" content="PZ_oWwxlFUOn6lyauQfS2aTulPQuRTs6rghAR3nlXqQ" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.harbaaCv.com/" />
         <link rel="icon" href="/logo.svg" />
