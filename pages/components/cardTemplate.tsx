@@ -14,7 +14,7 @@ const Card: React.FC<CardProps> = ({ name, id }) => {
     <Link
     href={`/cv?id=${id}`}
       className="relative group cursor-pointer rounded overflow-hidden shadow-xl block"
-      style={{ width: "330px", height: "100%" }}
+      style={{ width: "330px", height: "460px" }}
     >
 
       <Image
