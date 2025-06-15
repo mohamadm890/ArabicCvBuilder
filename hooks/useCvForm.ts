@@ -59,7 +59,7 @@ export function useCvForm() {
   const [formCv, setFormCv] = useLocalStorageState<CvForm>("cv-form", {
     defaultValue: DEFAULT_CV_FORM,
   });
-  
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   const [inputValue, setInputValue] = useState("");
 
@@ -121,7 +121,7 @@ const handleSkillChange = (index: number, value: string) => {
 const handlePreview = async () => {
   try {
     console.log(formCv, "formCv");
-    const response = await fetch('https://3002-idx-cvbuilder-1743968972168.cluster-p6qcyjpiljdwusmrjxdspyb5m2.cloudworkstations.dev/preview', {
+    const response = await fetch(`${apiUrl}/preview`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -142,7 +142,7 @@ const [pdfBase64, setPdfBase64] = useState(null);
 
 const generatePdf = async () => {
   try {
-    const response = await fetch('https://3002-idx-cvbuilder-1743968972168.cluster-p6qcyjpiljdwusmrjxdspyb5m2.cloudworkstations.dev/generate-pdf', {
+    const response = await fetch(`${apiUrl}/generate-pdf`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
