@@ -4,20 +4,18 @@ import Header from "@/pages/components/header";
 
 
 export const getStaticPaths = async () => {
-  const slugs = getAllSlugs();
-  const paths = slugs.map(({ params }) => ({
-    params: {
-      slug: typeof params.slug === 'string' 
-        ? params.slug 
-        : JSON.stringify(params.slug) // or fix this properly in getAllSlugs
-    }
+  const slugs = getAllSlugs(); // should return [ "post-1", "post-2" ]
+
+  const paths = slugs.map((slug) => ({
+    params: { slug } 
   }));
-  console.log(paths);
+
   return {
     paths,
-    fallback: false, // or true/‘blocking’ depending on how you want to handle non-existent slugs
+    fallback: false,
   };
-}
+};
+
 
 export const getStaticProps = async ({ params }: { params: any }) => {
     const post = await getPostData(params.slug);
