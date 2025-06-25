@@ -1,6 +1,7 @@
 import { getAllSlugs, getPostData } from "@/lib/posts";
 import PostCard from "../components/postCard";
 import Header from "../components/header";
+import Head from 'next/head';
 
 export const getStaticProps = async () => {
   const slugs = getAllSlugs();
@@ -26,6 +27,19 @@ type BlogPostProps = {
 
 export default function Blog({ posts }: BlogPostProps) {
   return (
+    <>
+     <Head>
+        <title>مقالات ونصائح لكتابة سيرة ذاتية احترافية | HarbaaCV</title>
+        <meta
+          name="description"
+          content="اكتشف أفضل المقالات والنصائح لكتابة سيرة ذاتية احترافية تزيد من فرصك في الحصول على وظيفة. تعلم كيف تكتب سيرة ذاتية ناجحة للطلاب والمبتدئين."
+        />
+        <meta
+          name="keywords"
+          content="مقالات كتابة السيرة الذاتية, نصائح كتابة السيرة الذاتية, كيف تكتب سيرة ذاتية احترافية, كتابة السيرة الذاتية للطلاب, نصائح لعمل سيرة ذاتية ناجحة, كيفية كتابة سيرة ذاتية تزيد فرص التوظيف, أفضل طرق كتابة السيرة الذاتية, أمثلة على السيرة الذاتية الناجحة, تعلم كتابة سيرة ذاتية احترافية, مقالات عن كتابة السيرة الذاتية, سيرة ذاتية للطلاب الجدد, سيرة ذاتية للمبتدئين, كتابة CV بالعربية"
+        />
+    <link rel="canonical" href={`https://harbaacv.com/blogs`} />
+    </Head>
     <div className="min-h-screen  bg-white p-8">
       <div className="flex flex-col  w-full">
       <Header />
@@ -56,5 +70,6 @@ export default function Blog({ posts }: BlogPostProps) {
      
    
     </div>
+    </>
   );
 }
