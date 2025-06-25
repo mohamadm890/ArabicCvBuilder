@@ -47,7 +47,7 @@ export default function BlogPost({ post }: BlogPostProps) {
         <meta name="keywords" content={post.frontmatter.keywords?.join(", ") || ""} />
         <meta property="og:title" content={post.frontmatter.title} />
         <meta property="og:description" content={post.frontmatter.description || "Default description"} />
-        <link rel="canonical" href={`https://harbaacv.com/blogs/${post.frontmatter.slug}`} />
+        <link rel="canonical" href={`https://harbaacv.com/blogs/${encodeURIComponent(post.frontmatter.slug)}`} />
         </Head>
 
 
