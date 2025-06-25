@@ -1,12 +1,8 @@
 import { getAllSlugs, getPostData } from "@/lib/posts";
 import Header from "@/pages/components/header";
+import Head from 'next/head'
 
-type Post = {
-  frontmatter: {
-    title: string;
-  };
-  contentHtml: string;
-};
+
 
 export const getStaticPaths = async () => {
   const slugs = getAllSlugs();
@@ -17,7 +13,6 @@ export const getStaticPaths = async () => {
         : JSON.stringify(params.slug) // or fix this properly in getAllSlugs
     }
   }));
-  console.log(paths);
   return {
     paths,
     fallback: false, // or true/‘blocking’ depending on how you want to handle non-existent slugs
@@ -34,6 +29,9 @@ export const getStaticProps = async ({ params }: { params: any }) => {
   type BlogPostProps = {
     post: {
       frontmatter: {
+        slug: any;
+        keywords: any;
+        description: string;
         title: string;
       };
       contentHtml: string;
@@ -42,6 +40,17 @@ export const getStaticProps = async ({ params }: { params: any }) => {
 
 export default function BlogPost({ post }: BlogPostProps) {
     return (
+<>
+<Head>
+        <title>{`${post.frontmatter.title}`}</title>
+        <meta name="description" content={post.frontmatter.description || "Default description"} />
+        <meta name="keywords" content={post.frontmatter.keywords?.join(", ") || ""} />
+        <meta property="og:title" content={post.frontmatter.title} />
+        <meta property="og:description" content={post.frontmatter.description || "Default description"} />
+        <link rel="canonical" href={`https://harbaacv.com/blogs/${post.frontmatter.slug}`} />
+        </Head>
+
+
       <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-6">
   <Header />
   <div
@@ -72,7 +81,9 @@ export default function BlogPost({ post }: BlogPostProps) {
     />
   </div>
 </div>
-
+</>
     );
   }
   
+
+
