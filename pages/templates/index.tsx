@@ -6,23 +6,26 @@ import Head from 'next/head';
 const Card = dynamic(() => import('../components/cardTemplate'), { ssr: false });
 
 const templates = [
-  { id: 1, src: "/temp1.webp" },
-  { id: 2, src: "/temp2.webp" },
+  { id: 1, src: "/temp1.webp", name:"tempalte_simple" },
+  { id: 3, src: "/temp3.webp", name:"tempalte_blue_text" },
+  { id: 4, src: "/temp4.webp", name: "tempalte_women" },
+  { id: 5, src: "/temp5.webp", name:"template_green" },
+  { id: 6, src: "/temp6.webp", name:"tempalte_modern" },
 ];
+
 
 export default function TemplatesPage() {
  
 
   return (
-   <>
-     <Head>
+    <>
+    <Head>
     <title>قوالب سيرة ذاتية جاهزة للتعبئة والتعديل - صمّم سيرتك بسهولة</title>
     <title>قوالب سيرة ذاتية للطلاب قابلة للتعديل والتحميل PDF</title>
   <meta name="description" content="أنشئ سيرتك الذاتية بسهولة كطالب أو حديث تخرج باستخدام قوالب قابلة للتعديل مباشرة وصدّرها كملف PDF احترافي." />
   <meta name="keywords" content="قوالب سيرة ذاتية للطلاب, سيرة ذاتية جاهزة للتعديل, تصميم CV للطلاب, كتابة سيرة ذاتية, تحميل سيرة ذاتية PDF" />
     <link rel="canonical" href={`https://harbaacv.com/templates`} />
   </Head>
-    
     <div className="min-h-screen flex justify-center bg-gray-100">
       <div className="flex flex-col 
                 w-full           /* default: full width on smallest screens */
@@ -32,7 +35,6 @@ export default function TemplatesPage() {
                 xl:w-[1100px]  
                 p-4">
 
-        {/* Replace Chakra Flex with div */}
         <div className="flex justify-between items-center " style={{ padding: "16px" }}>
           {/* Logo */}
           <div className="flex items-center gap-2">
@@ -49,15 +51,22 @@ export default function TemplatesPage() {
 
         <div className="pt-10 flex flex-col items-center pb-10 px-4 sm:px-10 lg:px-20" style={{ marginTop: "60px" }}>
           <div className="w-[320px] mx-auto">
-            <p className="font-bold mb-4 text-[#373738] text-center" style={{ fontWeight: '800', fontSize:"18px" }}>
-              أول خطوة نحو وظيفة أحلامك تبدأ من هنا. اختر القالب الذي يبرزك بين الآخرين.
-            </p>
-            <p className="text-[#8D8D8D] text-center" style={{marginTop:"12px", fontSize:"16px"}}>
-              اجعل سيرتك الذاتية تعبر عنك بأفضل شكل ممكن بخطوة بسيطة وسريعة.
-            </p>
+          <h1
+    className="font-bold mb-4 text-[#373738] text-center"
+    style={{ fontWeight: '800', fontSize: '18px' }}
+  >
+    سواء كنت <span className="text-[#000]">طالبًا</span> أو محترفًا، أول خطوة نحو وظيفة أحلامك تبدأ من هنا. اختر القالب الذي يبرزك بين الآخرين.
+  </h1>
+  <p
+    className="text-[#8D8D8D] text-center"
+    style={{ marginTop: '12px', fontSize: '16px' }}
+  >
+    اجعل سيرتك الذاتية تعبر عنك بأفضل شكل ممكن بخطوة بسيطة وسريعة، مثالية لكل{' '}
+    <span className="text-[#000]">طالب</span> يبحث عن فرصة تدريب أو عمل أولى.
+  </p>
           </div>
 
-          <div className="flex flex-row flex-wrap gap-4 px-20 justify-center" style={{marginTop:"24px", padding:"60px"}}>
+          <div className="flex flex-row flex-wrap lg:justify-start xl:justify-start gap-4 px-20 justify-center" style={{marginTop:"24px"}}>
             {templates?.map((item) => (
               <Card
                 name={item.src}
@@ -70,7 +79,9 @@ export default function TemplatesPage() {
 
       </div>
     </div>
-     </>
+    </>
   );
 }
+
+
 
