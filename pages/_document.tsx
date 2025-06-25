@@ -10,7 +10,6 @@ export default function Document() {
         />
         <meta name="google-site-verification" content="PZ_oWwxlFUOn6lyauQfS2aTulPQuRTs6rghAR3nlXqQ" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://www.harbaaCv.com/" />
         <link rel="icon" href="/logo.svg" />
 
         {/* Open Graph */}
