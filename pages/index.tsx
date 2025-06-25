@@ -1,14 +1,34 @@
 import Header from "./components/header";
 import NewCvButton from "./components/NewCvButton";
 import CollapsibleBasic from "./components/question";
-
-
+import Head from "next/head";
 
 export default function LeadingPage() {
 
 
 
   return (
+    <>
+
+       <Head>
+        <title>الرئيسية - HarbaaCv</title>
+        <meta name="description" content="أنشئ نموذج سيرة ذاتية جاهز للتعبئة بصيغة PDF مجانًا..." />
+        <link rel="canonical" href="https://www.harbaaCv.com/" />
+
+        {/* Open Graph */}
+        <meta property="og:title" content="harbaaCv - إنشاء سيرة ذاتية احترافية PDF مجانًا" />
+        <meta property="og:description" content="أنشئ سيرتك الذاتية بسهولة وبصيغة PDF عبر قوالب جاهزة وقابلة للتعديل..." />
+        <meta property="og:url" content="https://www.harbaaCv.com/" />
+        <meta property="og:image" content="https://www.harbaaCv.com/preview.jpg" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="harbaaCv - إنشاء سيرة ذاتية احترافية PDF مجانًا" />
+        <meta name="twitter:description" content="سير ذاتية بتصميم احترافي وجاهزة للتحميل بصيغة PDF جرب الآن!" />
+        <meta name="twitter:image" content="https://www.harbaaCv.com/preview.jpg" />
+
+        <meta name="keywords" content="سيرة ذاتية, نموذج سيرة ذاتية جاهز للتعبئة pdf, إنشاء سيرة ذاتية pdf مجانا, تصميم سيرة ذاتية" />
+      </Head>
 <div className="min-h-screen flex justify-center bg-[white]" style={{ fontFamily: 'var(--font-cairo)' }}>
 <div
         className="
@@ -45,9 +65,7 @@ export default function LeadingPage() {
 
           </div>
 
-          {/* Steps section */}
-       
-          {/* CTA to choose template */}
+        
 
           <div style={{marginTop:"200px", width:"100%", padding:"20px"}} >
             
@@ -245,6 +263,7 @@ style={{
 
 
     </div>
+      </>
   );
 }
 
