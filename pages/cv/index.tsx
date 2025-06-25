@@ -41,7 +41,9 @@ export default function HelloWorld() {
     handleSelectTemplate,
     addSkill_,
     addLanguage,
+    hanleImageDeletion,
     inputValue,
+    handleImageChange,
     removeLanguage,
     deleteEudcation,
    } = useCvFormContext();
@@ -154,9 +156,13 @@ export default function HelloWorld() {
  {currentStep === 0 && (
            <>
            
-           <ContactForm  
+           <ContactForm 
+           handleImageChange={handleImageChange} 
      formCv={formCv} 
-     handleInputChange={handleInputChange} /> 
+     handleInputChange={handleInputChange} 
+     hanleImageDeletion={hanleImageDeletion}
+     /> 
+     
            </>
  
     
