@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import NewCvButton from '../components/NewCvButton';
+import Head from 'next/head';
 
 // Dynamically import the Card component, disable SSR (server-side rendering)
 const Card = dynamic(() => import('../components/cardTemplate'), { ssr: false });
@@ -13,6 +14,15 @@ export default function TemplatesPage() {
  
 
   return (
+   <>
+     <Head>
+    <title>قوالب سيرة ذاتية جاهزة للتعبئة والتعديل - صمّم سيرتك بسهولة</title>
+    <title>قوالب سيرة ذاتية للطلاب قابلة للتعديل والتحميل PDF</title>
+  <meta name="description" content="أنشئ سيرتك الذاتية بسهولة كطالب أو حديث تخرج باستخدام قوالب قابلة للتعديل مباشرة وصدّرها كملف PDF احترافي." />
+  <meta name="keywords" content="قوالب سيرة ذاتية للطلاب, سيرة ذاتية جاهزة للتعديل, تصميم CV للطلاب, كتابة سيرة ذاتية, تحميل سيرة ذاتية PDF" />
+    <link rel="canonical" href={`https://harbaacv.com/templates`} />
+  </Head>
+    
     <div className="min-h-screen flex justify-center bg-gray-100">
       <div className="flex flex-col 
                 w-full           /* default: full width on smallest screens */
@@ -60,6 +70,7 @@ export default function TemplatesPage() {
 
       </div>
     </div>
+     </>
   );
 }
 
