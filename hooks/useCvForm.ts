@@ -16,6 +16,10 @@ export type CvForm = {
   educations: Education[];
   languages: Language[];
   templateId?: number | string | null;
+  profileImage?: {
+    name: string;
+    dataUrl: string | ArrayBuffer | null;
+  };
 };
 export type Language = {
   language: string;
@@ -54,14 +58,20 @@ export function useCvForm() {
     educations: [],
     languages: [], 
     templateId: null,
-
+    profileImage: {
+      name: "",
+      dataUrl: null,
+    },
   };
   const [formCv, setFormCv] = useLocalStorageState<CvForm>("cv-form", {
     defaultValue: DEFAULT_CV_FORM,
   });
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  useEffect(() => {
+    console.log("FormCv:", formCv);
+  }, [formCv])
 
   const [inputValue, setInputValue] = useState("");
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
   
   const handleSelectTemplate = (templateId: string | number) => {
@@ -72,8 +82,37 @@ export function useCvForm() {
     console.log("User selected template ID:", templateId);
   };
 
+  
+  
   // Save to localStorage on every update
- 
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        // Save image as base64 and also keep file name
+        setFormCv((prev) => ({
+          ...prev,
+          profileImage: {
+            name: file.name,
+            dataUrl: reader.result, // base64 string
+          }
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const hanleImageDeletion = () => {
+    setFormCv(prev => ({
+      ...prev,
+      profileImage: {
+        name: "",
+        dataUrl: null,
+      },
+    }));
+  };
+  
 
   // ✅ Input text (fullName, email, etc.)
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -118,19 +157,40 @@ const handleSkillChange = (index: number, value: string) => {
   });
 };
 
+function dataURLtoBlob(dataUrl: string): Blob {
+  const [header, base64] = dataUrl.split(',');
+  const mimeMatch = header.match(/:(.*?);/);
+  const mime = mimeMatch ? mimeMatch[1] : 'image/png';
+  const binary = atob(base64);
+  const array = new Uint8Array(binary.length);
+
+  for (let i = 0; i < binary.length; i++) {
+    array[i] = binary.charCodeAt(i);
+  }
+
+  return new Blob([array], { type: mime });
+}
+
 const handlePreview = async () => {
+  const formData = new FormData();
+
+  // Append text fields
+  formData.append("formCv", JSON.stringify(formCv));
+  
+  // Append image file if available
+  if (formCv.profileImage?.dataUrl && typeof formCv.profileImage.dataUrl === "string") {
+    const blob = dataURLtoBlob(formCv.profileImage.dataUrl);
+    formData.append("profileImage", blob, formCv.profileImage.name);
+  }
+
   try {
-    console.log(formCv, "formCv");
     const response = await fetch(`${apiUrl}/preview`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ formCv })
+      // DO NOT set Content-Type header! Let browser set it for FormData
+      body: formData,
     });
 
     const html = await response.text();
-    // You can return or save the result somewhere
     console.log("✅ Preview received:", html);
     return html;
   } catch (err) {
@@ -138,16 +198,28 @@ const handlePreview = async () => {
     return null;
   }
 };
+
+
+     
 const [pdfBase64, setPdfBase64] = useState(null);
 
 const generatePdf = async () => {
+
+  const formData = new FormData();
+
+  // Append text fields
+  formData.append("formCv", JSON.stringify(formCv));
+  
+  // Append image file if available
+  if (formCv.profileImage?.dataUrl && typeof formCv.profileImage.dataUrl === "string") {
+    const blob = dataURLtoBlob(formCv.profileImage.dataUrl);
+    formData.append("profileImage", blob, formCv.profileImage.name);
+  }
   try {
     const response = await fetch(`${apiUrl}/generate-pdf`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ formCv: formCv }),
+      body: formData,
+
     });
 
     if (!response.ok) {
@@ -309,6 +381,7 @@ const generatePdf = async () => {
     addSkill,
     handlePreview,
     handleLanguageChange,
+    hanleImageDeletion,
     generatePdf, 
     pdfBase64,
     handleLevelChange,
@@ -316,6 +389,7 @@ const generatePdf = async () => {
     addLanguage,
     handleSkillChange,
     handleEducation,
+    handleImageChange,
     handleExperience,
     updateExperience,
     deleteExperience,
@@ -325,4 +399,5 @@ const generatePdf = async () => {
     deleteEudcation
   };
 }
+
 
