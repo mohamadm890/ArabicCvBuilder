@@ -57,18 +57,6 @@ export default function BlogPost({ post }: BlogPostProps) {
     className="w-full max-w-[520px] flex flex-col items-center"
     style={{  marginTop:"48px" }}  // align children left inside this container
   >
-    <h1
-      style={{
-        color: "#4A4A4A",
-        fontSize: "1.6rem",
-        fontWeight: "700",
-        marginBottom: "1rem",
-        lineHeight: 1.5,
-        padding: 0,
-      }}
-    >
-      {post.frontmatter.title}
-    </h1>
 
     <div
       className="article"
