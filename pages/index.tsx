@@ -12,7 +12,7 @@ export default function LeadingPage() {
 
        <Head>
         <title>الرئيسية - HarbaaCv</title>
-        <meta name="description" content="أنشئ نموذج سيرة ذاتية جاهز للتعبئة بصيغة PDF مجانًا..." />
+        <meta name="description" content="أنشئ نموذج cv جاهز للتعبئة بصيغة PDF مجانًا..." />
         <link rel="canonical" href="https://www.harbaaCv.com/" />
 
         {/* Open Graph */}
@@ -52,7 +52,7 @@ export default function LeadingPage() {
     className="mb-4 text-[#323232] text-center font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
     style={{ fontSize: "40px", fontWeight:"800" }}
             >
-أنشئ سيرتك الذاتية باحترافية خلال دقائق!
+أنشئ cv باحترافية خلال دقائق!
             </h1>
             <p
               className="text-[#7E7E7E] text-center"
