@@ -55,7 +55,10 @@ export default function Blog({ posts }: BlogPostProps) {
 </div>
 
      
-      <div className="lg:w-[900px] xl:w-[900px] md:w-[520px] w-full flex xl:flex-row lg:flex-row md:flex-row flex-col justify-between items-center gap-12 " style={{marginTop:"40px"}}>
+<div
+  className="lg:w-[900px] xl:w-[900px] md:w-[520px] w-full flex flex-wrap xl:flex-row lg:flex-row md:flex-row flex-col justify-between items-center gap-2"
+  style={{ marginTop: "40px" }}
+>
        
       {posts?.map((post) => (
               <PostCard key={post.slug} post={post} />
