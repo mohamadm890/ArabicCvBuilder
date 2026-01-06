@@ -73,7 +73,6 @@ export function useCvForm() {
   const [inputValue, setInputValue] = useState("");
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-  console.log("API IS", apiUrl);
 
   
   const handleSelectTemplate = (templateId: string | number) => {
