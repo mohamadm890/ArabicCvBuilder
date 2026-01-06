@@ -73,6 +73,8 @@ export function useCvForm() {
   const [inputValue, setInputValue] = useState("");
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
+  console.log("API IS", apiUrl);
+
   
   const handleSelectTemplate = (templateId: string | number) => {
     setFormCv(prev => ({
@@ -114,7 +116,6 @@ export function useCvForm() {
   };
   
 
-  // ✅ Input text (fullName, email, etc.)
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormCv(prev => ({ ...prev, [name]: value }));
